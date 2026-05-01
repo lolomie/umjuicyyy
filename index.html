@@ -11,74 +11,139 @@
 </head>
 <body>
 
-  <!-- chaotic bg decorations -->
   <div id="deco"></div>
 
   <main>
 
-    <!-- STEP 1 — Apology -->
+    <!-- ══ STEP 1 — Apology ══ -->
     <div class="card" id="step1">
-      <div class="kitty-ears">
-        <span class="ear ear-l"></span>
-        <span class="ear ear-r"></span>
+
+      <!-- Kitty ears -->
+      <div class="card-ears">
+        <div class="c-ear c-ear-l"><div class="c-inner"></div></div>
+        <div class="c-ear c-ear-r"><div class="c-inner"></div></div>
       </div>
+
+      <!-- Big bow top-right -->
+      <div class="card-bow">
+        <div class="cb-l"></div><div class="cb-c"></div><div class="cb-r"></div>
+      </div>
+
+      <!-- Hello Kitty face -->
+      <div class="kitty-face">
+        <div class="kf-ear kf-ear-l"><div class="kf-ei"></div></div>
+        <div class="kf-ear kf-ear-r"><div class="kf-ei"></div></div>
+        <div class="kf-head">
+          <div class="kf-eye kf-eye-l"></div>
+          <div class="kf-eye kf-eye-r"></div>
+          <div class="kf-nose"></div>
+          <div class="kf-bow">
+            <div class="kfb-l"></div><div class="kfb-c"></div><div class="kfb-r"></div>
+          </div>
+          <div class="kf-wh">
+            <div class="kf-wl"><span></span><span></span><span></span></div>
+            <div class="kf-wr"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+
       <img class="photo" src="images/catflower.jpg" alt="" id="img1">
-      <div class="bow bow-top">🎀</div>
-      <h1>Um Juicyyy…</h1>
-      <p class="body-text">
-        Okay so I messed up 😬<br>
-        Like… BIG time. Asteroid-hitting-earth big.<br>
-        My brain literally went on a solo trip 🧳 without me.<br>
-        Very rude. We've had <em>words</em>. 🥺
-      </p>
+
+      <h1>Um Juicyyy… 🥺</h1>
+
+      <div class="speech-bubble">
+        Okay so I messed up 😬 Like… BIG time.<br>
+        Asteroid-hitting-earth big. My brain literally<br>
+        went on a solo trip 🧳 without me.<br>
+        Very rude of it. We've had <em>words</em>. 🥺
+      </div>
+
       <p class="question">Will you forgive me? 🥺</p>
+
       <div class="btns">
         <button class="btn-no" id="no1" onclick="handleNo(1)">No 😤</button>
         <button class="btn-yes" onclick="handleYes(1)">Yes!! 🥰</button>
       </div>
+
       <p class="hint" id="hint1">✨ choose very, very wisely bestie ✨</p>
-      <div class="stars-scatter" id="stars1"></div>
+
+      <div class="card-dots"></div>
     </div>
 
-    <!-- STEP 2 — Proposal -->
-    <div class="card card-pink hidden" id="step2">
-      <div class="kitty-ears">
-        <span class="ear ear-l"></span>
-        <span class="ear ear-r"></span>
+    <!-- ══ STEP 2 — Proposal ══ -->
+    <div class="card card-red hidden" id="step2">
+
+      <div class="card-ears">
+        <div class="c-ear c-ear-l"><div class="c-inner"></div></div>
+        <div class="c-ear c-ear-r"><div class="c-inner"></div></div>
       </div>
-      <div class="ring-bounce">💍</div>
+      <div class="card-bow red-bow">
+        <div class="cb-l"></div><div class="cb-c"></div><div class="cb-r"></div>
+      </div>
+
+      <div class="kitty-face kf-happy">
+        <div class="kf-ear kf-ear-l"><div class="kf-ei"></div></div>
+        <div class="kf-ear kf-ear-r"><div class="kf-ei"></div></div>
+        <div class="kf-head">
+          <div class="kf-eye kf-eye-l"></div>
+          <div class="kf-eye kf-eye-r"></div>
+          <div class="kf-nose"></div>
+          <div class="kf-bow">
+            <div class="kfb-l"></div><div class="kfb-c"></div><div class="kfb-r"></div>
+          </div>
+          <div class="kf-wh">
+            <div class="kf-wl"><span></span><span></span><span></span></div>
+            <div class="kf-wr"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ring-pop">💍</div>
       <img class="photo" src="images/catflower.jpg" alt="">
-      <div class="bow bow-top">🎀</div>
-      <h1>You forgave me!!<br><span class="red">LEGEND.</span></h1>
-      <p class="body-text">
-        Now I have one tiny, small, itty-bitty question 🙈<br>
-        Totally chill. No pressure at ALL. Super casual.<br>
-        (I've been sweating about this for 3 weeks 💀)
-      </p>
+
+      <h1>You forgave me!! <span class="stamp">LEGEND!</span></h1>
+
+      <div class="speech-bubble sb-red">
+        Now I have one tiny, itty-bitty question 🙈<br>
+        Totally chill. No pressure at ALL.<br>
+        (I've been sweating for 3 weeks 💀)
+      </div>
+
       <p class="question">Will you be my wife? 💍🌹</p>
+
       <div class="btns">
         <button class="btn-no" id="no2" onclick="handleNo(2)">No 😤</button>
-        <button class="btn-yes pulse" onclick="handleYes(2)">YES!!! 💍</button>
+        <button class="btn-yes btn-yes-red pulse" onclick="handleYes(2)">YES!!! 💍</button>
       </div>
-      <p class="hint" id="hint2">✨ i practiced in the mirror for weeks ✨</p>
-      <div class="stars-scatter" id="stars2"></div>
+
+      <p class="hint" id="hint2">✨ practiced this in the mirror for weeks ✨</p>
+
+      <div class="card-dots cd-red"></div>
     </div>
 
-    <!-- STEP 3 — Celebration -->
-    <div class="card card-celebrate hidden" id="step3">
-      <div class="kitty-ears">
-        <span class="ear ear-l"></span>
-        <span class="ear ear-r"></span>
+    <!-- ══ STEP 3 — Celebrate ══ -->
+    <div class="card card-gold hidden" id="step3">
+
+      <div class="card-ears">
+        <div class="c-ear c-ear-l gold-ear"><div class="c-inner"></div></div>
+        <div class="c-ear c-ear-r gold-ear"><div class="c-inner"></div></div>
       </div>
+      <div class="card-bow gold-bow">
+        <div class="cb-l"></div><div class="cb-c"></div><div class="cb-r"></div>
+      </div>
+
       <img class="photo photo-dance" src="images/dance.gif" alt="">
-      <div class="bow bow-top">🎀</div>
-      <h1 class="celebrate">SHE SAID YES!!! 🎉💍</h1>
-      <p class="body-text">
+
+      <h1 class="celebrate">SHE SAID YES!!!<br>🎉💍🎉</h1>
+
+      <div class="speech-bubble sb-gold">
         The SMARTEST decision of your entire life ✨<br>
         (2nd smartest was forgiving me 😌)
-      </p>
-      <p class="vow">I promise to love you, annoy you, and make<br>you laugh every single day forever 🥹💕</p>
-      <div class="mini-bows">🎀 🌸 🎀 🌸 🎀</div>
+      </div>
+
+      <p class="vow">I promise to love you, annoy you,<br>and make you laugh forever 🥹💕</p>
+
+      <div class="bows-row">🎀 🌸 💍 🌸 🎀</div>
     </div>
 
   </main>
