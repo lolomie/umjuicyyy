@@ -1,77 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For You, Um Juicyyy 💕</title>
+  <title>For You 💌</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,400i&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <!-- Floating hearts background -->
-  <div class="hearts-bg" id="heartsBg"></div>
+  <div class="bg-orb"></div>
+  <div id="hearts"></div>
 
-  <!-- Petals -->
-  <div class="petals" id="petals"></div>
+  <main>
 
-  <div class="container">
-    <div class="card" id="mainCard">
-
-      <!-- ── STEP 1: APOLOGY ── -->
-      <div id="step1" class="step active">
-        <div class="crown">👑</div>
-        <img class="main-img" src="images/catflower.jpg" alt="cute cat" id="mainImg">
-        <h1 class="title">Um Juicyyy...</h1>
-        <div class="apology-scroll">
-          <p class="apology-line">Okay. Sooo. I messed up.</p>
-          <p class="apology-line small">Like... truly, spectacularly, magnificently messed up.</p>
-          <p class="apology-line small">My brain decided to go on a solo vacation without asking. Very unprofessional of it. I've had words with it.</p>
-          <p class="apology-line small">It said sorry too. (It's also scared of you.)</p>
-        </div>
-        <p class="question">Will you forgive me? 🥺</p>
-        <div class="buttons">
-          <button id="no-btn" class="btn btn-no" onclick="handleNo()">No 😤</button>
-          <button id="yes-btn" class="btn btn-yes" onclick="handleYes1()">Yes 🥰</button>
-        </div>
-        <p class="hint" id="hint-text">Choose very, very wisely.</p>
+    <!-- STEP 1 — Apology -->
+    <div class="card" id="step1">
+      <img class="photo" src="images/catflower.jpg" alt="" id="img1">
+      <h1>Um Juicyyy…</h1>
+      <p class="body-text">
+        I messed up. Spectacularly.<br>
+        My brain went on vacation without telling me.<br>
+        Very unprofessional. We've had a long talk. 🥺
+      </p>
+      <p class="question">Will you forgive me?</p>
+      <div class="btns">
+        <button class="btn-no" id="no1" onclick="handleNo(1)">No 😤</button>
+        <button class="btn-yes" onclick="handleYes(1)">Yes 🥰</button>
       </div>
-
-      <!-- ── STEP 2: MARRIAGE PROPOSAL ── -->
-      <div id="step2" class="step">
-        <div class="sparkle-ring">✨ 💍 ✨</div>
-        <img class="main-img big-img" src="images/catflower.jpg" alt="happy cat" id="proposalImg">
-        <h1 class="title proposal-title">You forgave me.<br><span class="gold">Legend.</span></h1>
-        <p class="apology-line small">Now that we're on good terms again...</p>
-        <p class="apology-line small">I have one tiny, small, completely normal question.</p>
-        <p class="apology-line small">No pressure. Totally chill. Super casual.</p>
-        <p class="question proposal-q">Will you be my wife? 💍🌹</p>
-        <div class="buttons">
-          <button id="no-btn-2" class="btn btn-no" onclick="handleNo2()">Absolutely Not 😤</button>
-          <button id="yes-btn-2" class="btn btn-yes pulse" onclick="handleYes2()">YES! 💍</button>
-        </div>
-        <p class="hint" id="hint-text-2">I've been practicing this in the mirror for weeks.</p>
-      </div>
-
-      <!-- ── STEP 3: CELEBRATION ── -->
-      <div id="step3" class="step">
-        <img class="main-img dance-img" src="images/dance.gif" alt="dancing">
-        <h1 class="title celebrate-title">SHE SAID YES!!! 🎉💍🎊</h1>
-        <p class="apology-line">The smartest decision you've ever made.</p>
-        <p class="apology-line small">(Second smartest was forgiving me.)</p>
-        <p class="apology-line small">I promise to love you, annoy you, and make you laugh every single day.</p>
-        <p class="apology-line small">You're stuck with me now. Officially. Legally. Forever. 🥹</p>
-        <div class="ring-animation">💍💕💍</div>
-      </div>
-
+      <span class="hint" id="hint1">Choose very, very wisely.</span>
     </div>
-  </div>
+
+    <!-- STEP 2 — Proposal -->
+    <div class="card hidden" id="step2">
+      <div class="ring-float">💍</div>
+      <img class="photo" src="images/catflower.jpg" alt="">
+      <h1>You forgave me.<br><em>Legend.</em></h1>
+      <p class="body-text">
+        Now I have one tiny question.<br>
+        Totally casual. Completely normal.
+      </p>
+      <p class="question">Will you be my wife?</p>
+      <div class="btns">
+        <button class="btn-no" id="no2" onclick="handleNo(2)">No 😤</button>
+        <button class="btn-yes pulse" onclick="handleYes(2)">YES! 💍</button>
+      </div>
+      <span class="hint" id="hint2">I practiced this in the mirror for weeks.</span>
+    </div>
+
+    <!-- STEP 3 — Celebration -->
+    <div class="card hidden" id="step3">
+      <img class="photo photo-dance" src="images/dance.gif" alt="">
+      <h1 class="celebrate">She said YES!!! 🎉</h1>
+      <p class="body-text">The smartest decision of your life.<br>(Second smartest was forgiving me.)</p>
+      <p class="vow">I promise to love you, annoy you,<br>and make you laugh every single day. 🥹</p>
+    </div>
+
+  </main>
 
   <script src="script.js"></script>
 </body>
-
 </html>
