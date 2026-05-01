@@ -1,84 +1,173 @@
-function showMessage(response) {
-  let videoPlayed = false;
-  if (response === "No") {
-    const noButton = document.getElementById("no-button");
-    const maxWidth = window.innerWidth - noButton.offsetWidth;
-    const maxHeight = window.innerHeight - noButton.offsetHeight;
+/* ── BACKGROUND MAGIC ── */
+(function spawnHearts() {
+  const container = document.getElementById('heartsBg');
+  const symbols = ['❤️', '🩷', '💕', '💖', '💗', '🌹', '✨'];
+  for (let i = 0; i < 28; i++) {
+    const el = document.createElement('div');
+    el.className = 'heart';
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (0.9 + Math.random() * 1.4) + 'rem';
+    el.style.animationDuration = (6 + Math.random() * 10) + 's';
+    el.style.animationDelay = (Math.random() * 10) + 's';
+    container.appendChild(el);
+  }
+})();
 
-    // Set the button position to absolute
-    noButton.style.position = "absolute";
+(function spawnPetals() {
+  const container = document.getElementById('petals');
+  const symbols = ['🌸', '🌺', '🌷', '🫧', '⭐'];
+  for (let i = 0; i < 16; i++) {
+    const el = document.createElement('div');
+    el.className = 'petal';
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (8 + Math.random() * 12) + 's';
+    el.style.animationDelay = (Math.random() * 12) + 's';
+    container.appendChild(el);
+  }
+})();
 
-    // Change the image source to "gun.gif"
-    document.getElementsByClassName("image")[0].src = "images/gun.gif";
+/* ── STATE ── */
+let noClickCount = 0;
+let videoPlayed = false;
+let floatingVideo = null;
 
-    // Generate random coordinates within the visible container
-    const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
-    const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
+/* ── STEP 1: APOLOGY "NO" ── */
+function handleNo() {
+  noClickCount++;
+  const btn = document.getElementById('no-btn');
+  const img = document.getElementById('mainImg');
+  const hint = document.getElementById('hint-text');
 
-    // Apply the new coordinates to the button
-    noButton.style.left = randomX + "px";
-    noButton.style.top = randomY + "px";
-
-    // Update text content and hide the name message
-    document.getElementById("question").textContent =
-      "Choose wisely";
-    document.getElementById("name").style.display = "none";
-
-    // Add a mouseover event listener to the "No" button
-    noButton.addEventListener("mouseover", () => {
-      if (!videoPlayed) {
-        const videoElement = document.createElement("video");
-        videoElement.src = "./Maroon 5 - Sugar.mp4#t=42";
-        videoElement.autoplay = true;
-        videoElement.controls = false;
-        document.body.appendChild(videoElement);
-        videoElement.style.position = "fixed";
-        videoElement.style.top = "40%";
-        videoElement.style.left = "50%";
-        videoElement.style.transform = "translate(-50%, -50%)";
-        videoElement.style.width = "700px"
-        document.body.appendChild(videoElement);
-        // Set the flag to true after playing the video
-        videoPlayed = true;
-      }
-
-      // Generate new random coordinates when the button is hovered
-      const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
-      const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
-
-      noButton.style.zIndex = "100";
-      // Apply new coordinates to the button, causing it to move
-      noButton.style.left = randomX + "px";
-      noButton.style.top = randomY + "px";
-    });
+  // Swap to gun gif on first click
+  if (noClickCount === 1) {
+    img.src = 'images/gun.gif';
+    img.style.borderRadius = '16px';
+    document.querySelector('#step1 .question').textContent = 'Excuse me?? 🔫';
+    hint.textContent = 'Are you sure you want to do this?';
   }
 
-  if (response === "Yes") {
-    // Remove the name message and the "No" button
-    document.getElementById("name").remove();
-    document.getElementById("no-button").remove();
-    const videoElement = document.querySelector("video");
-    if (videoElement) {
-      videoElement.pause();
-      videoElement.remove();
+  // Make button run away
+  btn.style.position = 'fixed';
+  btn.style.zIndex = '200';
+
+  const maxX = window.innerWidth  - btn.offsetWidth  - 20;
+  const maxY = window.innerHeight - btn.offsetHeight - 20;
+  btn.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + 'px';
+  btn.style.top  = Math.max(10, Math.floor(Math.random() * maxY)) + 'px';
+
+  // Play video on hover (once)
+  btn.onmouseenter = function () {
+    if (!videoPlayed) {
+      playFloatingVideo('./Minions Cheering.mp4', 0);
+      videoPlayed = true;
     }
+    const mx = window.innerWidth  - btn.offsetWidth  - 20;
+    const my = window.innerHeight - btn.offsetHeight - 20;
+    btn.style.left = Math.max(10, Math.floor(Math.random() * mx)) + 'px';
+    btn.style.top  = Math.max(10, Math.floor(Math.random() * my)) + 'px';
+  };
 
-    // Create an audio element to play the sound
-    const audioElement = document.createElement("audio");
-    audioElement.src = "./Minions Cheering.mp3"; // Source of the sound
-    audioElement.preload = "auto"; // Preloading the audio
-    audioElement.play() // Play the sound
-      .catch(e => console.error("Audio playback failed:", e)); // Catch and log playback errors
+  // Mobile tap: just keep moving
+  btn.ontouchstart = function () {
+    const mx = window.innerWidth  - btn.offsetWidth  - 20;
+    const my = window.innerHeight - btn.offsetHeight - 20;
+    btn.style.left = Math.max(10, Math.floor(Math.random() * mx)) + 'px';
+    btn.style.top  = Math.max(10, Math.floor(Math.random() * my)) + 'px';
+  };
+}
 
-    // Update the text content, display the message, and change the image to "dance.gif"
-    const yesMessage = document.getElementById("question");
-    yesMessage.textContent = "See you on the 14th my princess";
-    yesMessage.style.display = "block";
-    yesMessage.style.fontStyle = "normal";
-    document.getElementsByClassName("image")[0].src = "images/dance.gif";
+/* ── STEP 1: APOLOGY "YES" ── */
+function handleYes1() {
+  stopVideo();
+  goToStep(2);
+  document.getElementById('proposalImg').src = 'images/catflower.jpg';
+}
 
-    // Remove the "Yes" button
-    document.getElementById("yesButton").remove();
+/* ── STEP 2: PROPOSAL "NO" ── */
+function handleNo2() {
+  const btn = document.getElementById('no-btn-2');
+  const hint = document.getElementById('hint-text-2');
+
+  btn.style.position = 'fixed';
+  btn.style.zIndex = '200';
+
+  const maxX = window.innerWidth  - btn.offsetWidth  - 20;
+  const maxY = window.innerHeight - btn.offsetHeight - 20;
+  btn.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + 'px';
+  btn.style.top  = Math.max(10, Math.floor(Math.random() * maxY)) + 'px';
+
+  hint.textContent = 'Babe. BABE. Come back. 😭';
+
+  btn.onmouseenter = function () {
+    const mx = window.innerWidth  - btn.offsetWidth  - 20;
+    const my = window.innerHeight - btn.offsetHeight - 20;
+    btn.style.left = Math.max(10, Math.floor(Math.random() * mx)) + 'px';
+    btn.style.top  = Math.max(10, Math.floor(Math.random() * my)) + 'px';
+  };
+  btn.ontouchstart = btn.onmouseenter;
+}
+
+/* ── STEP 2: PROPOSAL "YES" ── */
+function handleYes2() {
+  stopVideo();
+  goToStep(3);
+  playMinionsCheer();
+  launchConfetti();
+}
+
+/* ── HELPERS ── */
+function goToStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('step' + n);
+  target.classList.add('active');
+  // reset runaway buttons to normal flow
+  ['no-btn', 'no-btn-2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.style.position = ''; el.style.left = ''; el.style.top = ''; }
+  });
+}
+
+function playFloatingVideo(src, startTime) {
+  stopVideo();
+  floatingVideo = document.createElement('video');
+  floatingVideo.src = startTime ? src + '#t=' + startTime : src;
+  floatingVideo.autoplay = true;
+  floatingVideo.loop = true;
+  floatingVideo.controls = false;
+  floatingVideo.className = 'floating-video';
+  floatingVideo.muted = false;
+  document.body.appendChild(floatingVideo);
+}
+
+function stopVideo() {
+  if (floatingVideo) {
+    floatingVideo.pause();
+    floatingVideo.remove();
+    floatingVideo = null;
   }
+}
 
+function playMinionsCheer() {
+  const audio = document.createElement('audio');
+  audio.src = './Minions Cheering.mp4';
+  audio.preload = 'auto';
+  audio.play().catch(() => {});
+}
+
+function launchConfetti() {
+  const pieces = ['🎉', '🎊', '💍', '💕', '🌹', '⭐', '✨', '🥂', '🎈'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
+      el.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 6000);
+    }, i * 80);
+  }
 }
