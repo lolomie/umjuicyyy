@@ -6,56 +6,79 @@
   <title>For You 💌</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,400i&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;900&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="bg-orb"></div>
-  <div id="hearts"></div>
+  <!-- chaotic bg decorations -->
+  <div id="deco"></div>
 
   <main>
 
     <!-- STEP 1 — Apology -->
     <div class="card" id="step1">
+      <div class="kitty-ears">
+        <span class="ear ear-l"></span>
+        <span class="ear ear-r"></span>
+      </div>
       <img class="photo" src="images/catflower.jpg" alt="" id="img1">
+      <div class="bow bow-top">🎀</div>
       <h1>Um Juicyyy…</h1>
       <p class="body-text">
-        I messed up. Spectacularly.<br>
-        My brain went on vacation without telling me.<br>
-        Very unprofessional. We've had a long talk. 🥺
+        Okay so I messed up 😬<br>
+        Like… BIG time. Asteroid-hitting-earth big.<br>
+        My brain literally went on a solo trip 🧳 without me.<br>
+        Very rude. We've had <em>words</em>. 🥺
       </p>
-      <p class="question">Will you forgive me?</p>
+      <p class="question">Will you forgive me? 🥺</p>
       <div class="btns">
         <button class="btn-no" id="no1" onclick="handleNo(1)">No 😤</button>
-        <button class="btn-yes" onclick="handleYes(1)">Yes 🥰</button>
+        <button class="btn-yes" onclick="handleYes(1)">Yes!! 🥰</button>
       </div>
-      <span class="hint" id="hint1">Choose very, very wisely.</span>
+      <p class="hint" id="hint1">✨ choose very, very wisely bestie ✨</p>
+      <div class="stars-scatter" id="stars1"></div>
     </div>
 
     <!-- STEP 2 — Proposal -->
-    <div class="card hidden" id="step2">
-      <div class="ring-float">💍</div>
+    <div class="card card-pink hidden" id="step2">
+      <div class="kitty-ears">
+        <span class="ear ear-l"></span>
+        <span class="ear ear-r"></span>
+      </div>
+      <div class="ring-bounce">💍</div>
       <img class="photo" src="images/catflower.jpg" alt="">
-      <h1>You forgave me.<br><em>Legend.</em></h1>
+      <div class="bow bow-top">🎀</div>
+      <h1>You forgave me!!<br><span class="red">LEGEND.</span></h1>
       <p class="body-text">
-        Now I have one tiny question.<br>
-        Totally casual. Completely normal.
+        Now I have one tiny, small, itty-bitty question 🙈<br>
+        Totally chill. No pressure at ALL. Super casual.<br>
+        (I've been sweating about this for 3 weeks 💀)
       </p>
-      <p class="question">Will you be my wife?</p>
+      <p class="question">Will you be my wife? 💍🌹</p>
       <div class="btns">
         <button class="btn-no" id="no2" onclick="handleNo(2)">No 😤</button>
-        <button class="btn-yes pulse" onclick="handleYes(2)">YES! 💍</button>
+        <button class="btn-yes pulse" onclick="handleYes(2)">YES!!! 💍</button>
       </div>
-      <span class="hint" id="hint2">I practiced this in the mirror for weeks.</span>
+      <p class="hint" id="hint2">✨ i practiced in the mirror for weeks ✨</p>
+      <div class="stars-scatter" id="stars2"></div>
     </div>
 
     <!-- STEP 3 — Celebration -->
-    <div class="card hidden" id="step3">
+    <div class="card card-celebrate hidden" id="step3">
+      <div class="kitty-ears">
+        <span class="ear ear-l"></span>
+        <span class="ear ear-r"></span>
+      </div>
       <img class="photo photo-dance" src="images/dance.gif" alt="">
-      <h1 class="celebrate">She said YES!!! 🎉</h1>
-      <p class="body-text">The smartest decision of your life.<br>(Second smartest was forgiving me.)</p>
-      <p class="vow">I promise to love you, annoy you,<br>and make you laugh every single day. 🥹</p>
+      <div class="bow bow-top">🎀</div>
+      <h1 class="celebrate">SHE SAID YES!!! 🎉💍</h1>
+      <p class="body-text">
+        The SMARTEST decision of your entire life ✨<br>
+        (2nd smartest was forgiving me 😌)
+      </p>
+      <p class="vow">I promise to love you, annoy you, and make<br>you laugh every single day forever 🥹💕</p>
+      <div class="mini-bows">🎀 🌸 🎀 🌸 🎀</div>
     </div>
 
   </main>

@@ -1,18 +1,39 @@
-/* ── HEARTS ── */
+/* ── CHAOTIC BACKGROUND DECORATIONS ── */
 (function () {
-  const wrap = document.getElementById('hearts');
-  const symbols = ['♥', '❤', '♡'];
-  for (let i = 0; i < 14; i++) {
-    const h = document.createElement('span');
-    h.className = 'hrt';
-    h.textContent = symbols[i % symbols.length];
-    h.style.left = Math.random() * 100 + 'vw';
-    h.style.fontSize = (0.75 + Math.random() * 0.9) + 'rem';
-    h.style.animationDuration = (9 + Math.random() * 11) + 's';
-    h.style.animationDelay = (Math.random() * 14) + 's';
-    wrap.appendChild(h);
-  }
+  const wrap = document.getElementById('deco');
+  const items = ['🎀','🌸','⭐','💕','🩷','✨','🌟','🎀','🌷','💖','🍬','🎀','🌸','💗'];
+  items.forEach((sym, i) => {
+    const el = document.createElement('span');
+    el.className = 'deco-item';
+    el.textContent = sym;
+    el.style.left   = (5 + Math.random() * 88) + 'vw';
+    el.style.top    = (5 + Math.random() * 88) + 'vh';
+    el.style.fontSize = (1.2 + Math.random() * 1.8) + 'rem';
+    el.style.animationDuration  = (4 + Math.random() * 6) + 's';
+    el.style.animationDelay     = (Math.random() * 6) + 's';
+    el.style.opacity = 0.5 + Math.random() * 0.4;
+    wrap.appendChild(el);
+  });
 })();
+
+/* ── CARD STAR SCATTER ── */
+function spawnCardStars(id) {
+  const wrap = document.getElementById(id);
+  if (!wrap) return;
+  const syms = ['✦','✧','⁕','✸','✺'];
+  for (let i = 0; i < 10; i++) {
+    const s = document.createElement('span');
+    s.className = 'star-item';
+    s.textContent = syms[i % syms.length];
+    s.style.left = Math.random() * 92 + '%';
+    s.style.top  = Math.random() * 92 + '%';
+    s.style.animationDelay = (Math.random() * 2) + 's';
+    s.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+    wrap.appendChild(s);
+  }
+}
+spawnCardStars('stars1');
+spawnCardStars('stars2');
 
 /* ── STATE ── */
 let vid = null;
@@ -25,13 +46,13 @@ function handleNo(step) {
   if (step === 1 && !gunShown) {
     document.getElementById('img1').src = 'images/gun.gif';
     document.getElementById('img1').style.borderRadius = '16px';
-    document.querySelector('#step1 .question').textContent = 'Excuse me?? 🔫';
-    document.getElementById('hint1').textContent = 'Are you absolutely sure about this?';
+    document.querySelector('#step1 .question').textContent = 'Excuse me?? 🔫😤';
+    document.getElementById('hint1').textContent = '✨ are you absolutely sure about this bestie ✨';
     gunShown = true;
   }
 
   if (step === 2) {
-    document.getElementById('hint2').textContent = 'Babe. BABE. Come back. 😭';
+    document.getElementById('hint2').textContent = '✨ babe. BABE. come back pls 😭 ✨';
   }
 
   btn.style.position = 'fixed';
@@ -77,7 +98,7 @@ function show(id) {
   });
 }
 
-/* ── AUDIO / VIDEO ── */
+/* ── VIDEO ── */
 function playVid(src) {
   stopVid();
   vid = document.createElement('video');
@@ -87,11 +108,11 @@ function playVid(src) {
   vid.loop = true;
   document.body.appendChild(vid);
 }
-
 function stopVid() {
   if (vid) { vid.pause(); vid.remove(); vid = null; }
 }
 
+/* ── CHEER ── */
 function cheer() {
   const a = document.createElement('audio');
   a.src = './Minions Cheering.mp4';
@@ -100,17 +121,17 @@ function cheer() {
 
 /* ── CONFETTI ── */
 function confetti() {
-  const items = ['🎉', '🎊', '💍', '💕', '🌹', '✨', '🥂', '🎈'];
-  for (let i = 0; i < 55; i++) {
+  const items = ['🎀','🌸','🎉','🎊','💍','💕','🌹','✨','🥂','🎈','🩷','⭐'];
+  for (let i = 0; i < 70; i++) {
     setTimeout(() => {
       const el = document.createElement('span');
       el.className = 'confetti-piece';
       el.textContent = items[Math.floor(Math.random() * items.length)];
       el.style.left = Math.random() * 100 + 'vw';
-      el.style.fontSize = (1 + Math.random() * 1.1) + 'rem';
+      el.style.fontSize = (1 + Math.random() * 1.3) + 'rem';
       el.style.animationDuration = (2.5 + Math.random() * 3) + 's';
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 5500);
-    }, i * 65);
+    }, i * 55);
   }
 }
